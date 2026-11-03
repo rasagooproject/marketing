@@ -1,19 +1,651 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8">
-  <title>Hello World!</title>
-  <style>
-    body {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-    }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>رساگو — گزارش‌نویسی پزشکی، همپای صدای شما</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
 </head>
 <body>
-  Hello World!
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+html{scroll-behavior:smooth}
+a{color:#4227CD}a:hover{color:#3519B0}
+.rh-primary:hover{background-color:#3519B0 !important;color:#fff}
+.rs-light:hover{background-color:#EDEBFF !important}
+.rs-nav:hover{color:#4227CD !important}
+.rs-foot:hover{color:#FFFFFF !important}
+a:focus-visible,button:focus-visible{outline:3px solid #0BCAA9;outline-offset:3px}
+.rh-bar{transform-origin:center;animation:rh-wave 1.1s ease-in-out infinite}
+@keyframes rh-wave{0%,100%{transform:scaleY(.45)}50%{transform:scaleY(1)}}
+.rh-caret{animation:rh-blink 1s steps(1) infinite}
+@keyframes rh-blink{50%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.rh-bar,.rh-caret{animation:none}html{scroll-behavior:auto}}
+</style>
+</helmet>
+<div dir="rtl" style="font-family: 'Vazirmatn', system-ui, sans-serif; color: #0C124E; background: #0C124E; width: 100%; overflow-x: hidden">
+
+<!-- ============ NAV ============ -->
+<header style="position: relative; z-index: 10; background: #F6F7FD">
+<div style="height: 76px; padding: 0 {{L.gutter}}; display: flex; align-items: center; justify-content: space-between; gap: 24px; box-sizing: border-box">
+<a href="#" aria-label="رساگو، صفحه‌ی اصلی" style="display: inline-flex; align-items: center"><img src="./assets/b920641cf1edb2bb5f2f45553a46f7c8.svg" alt="رساگو" style="height: 34px; width: auto; display: block"></a>
+<sc-if value="{{L.desk}}" hint-placeholder-val="{{true}}">
+<nav aria-label="منوی اصلی" style="display: flex; align-items: center; gap: 36px">
+<a class="rs-nav" href="#how" style="color: #2A2F55; font-size: 15px; font-weight: 500; text-decoration: none">نحوه‌ی کار</a>
+<a class="rs-nav" href="#features" style="color: #2A2F55; font-size: 15px; font-weight: 500; text-decoration: none">امکانات</a>
+<a class="rs-nav" href="#security" style="color: #2A2F55; font-size: 15px; font-weight: 500; text-decoration: none">امنیت</a>
+<a class="rs-nav" href="#faq" style="color: #2A2F55; font-size: 15px; font-weight: 500; text-decoration: none">سؤالات متداول</a>
+</nav>
+<div style="display: flex; align-items: center; gap: 20px">
+<a class="rs-nav" href="#" style="color: #0C124E; font-size: 15px; font-weight: 500; text-decoration: none">ورود</a>
+<a class="rh-primary" href="#" style="display: inline-flex; align-items: center; min-height: 44px; padding: 0 20px; border-radius: 12px; background-color: #4227CD; color: #FFFFFF; font-size: 15px; font-weight: 700; text-decoration: none">درخواست دمو</a>
+</div>
+</sc-if>
+<sc-if value="{{L.mob}}" hint-placeholder-val="{{false}}">
+<button type="button" aria-label="{{menuLabel}}" aria-expanded="{{menuExp}}" onClick="{{toggleMenu}}" style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 12px; border: 1px solid #DCDDF2; background: #FFFFFF; color: #0C124E; cursor: pointer">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16"></path><path d="M4 12h16"></path><path d="M4 17h16"></path></svg>
+</button>
+</sc-if>
+</div>
+<sc-if value="{{menuShow}}" hint-placeholder-val="{{false}}">
+<nav aria-label="منوی اصلی" style="display: flex; flex-direction: column; gap: 4px; padding: 8px 22px 20px; background: #F6F7FD; border-bottom: 1px solid #E5E6F3">
+<a href="#how" onClick="{{closeMenu}}" style="padding: 12px 0; color: #0C124E; font-size: 16px; font-weight: 500; text-decoration: none">نحوه‌ی کار</a>
+<a href="#features" onClick="{{closeMenu}}" style="padding: 12px 0; color: #0C124E; font-size: 16px; font-weight: 500; text-decoration: none">امکانات</a>
+<a href="#security" onClick="{{closeMenu}}" style="padding: 12px 0; color: #0C124E; font-size: 16px; font-weight: 500; text-decoration: none">امنیت</a>
+<a href="#faq" onClick="{{closeMenu}}" style="padding: 12px 0; color: #0C124E; font-size: 16px; font-weight: 500; text-decoration: none">سؤالات متداول</a>
+<a href="#" style="padding: 12px 0; color: #0C124E; font-size: 16px; font-weight: 500; text-decoration: none">ورود</a>
+<a class="rh-primary" href="#" style="margin-top: 8px; display: flex; align-items: center; justify-content: center; min-height: 52px; border-radius: 14px; background-color: #4227CD; color: #FFFFFF; font-size: 16px; font-weight: 700; text-decoration: none">درخواست دمو</a>
+</nav>
+</sc-if>
+</header>
+
+<!-- ============ HERO ============ -->
+<section aria-label="معرفی رساگو" style="background: #F6F7FD; color: #0C124E; overflow: hidden; position: relative; width: 100%">
+<div style="position: relative; display: flex; box-sizing: border-box; flex-direction: {{L.dir}}; align-items: {{L.align}}; min-height: {{L.minH}}; padding: {{L.pad}}">
+
+<div style="position: relative; z-index: 3; box-sizing: border-box; display: flex; flex-direction: column; width: {{L.textW}}; padding: {{L.textPad}}; gap: {{L.gap}}">
+<h1 style="margin: 0; font-size: {{L.h1}}; line-height: 1.4; font-weight: 800; letter-spacing: -0.3px; color: #0C124E">گزارش‌نویسی پزشکی،<br>همپای صدای شما</h1>
+<p style="margin: 0; font-size: {{L.sub}}; line-height: 2; font-weight: 400; color: #464B6A; max-width: 30em">گزارش تصویربرداری را با صدای خودتان بدهید؛ متن نهایی با همان ساختار، اصطلاحات و الگویی که همیشه می‌نویسید آماده می‌شود.</p>
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 16px 28px; margin-top: 6px">
+<a class="rh-primary" href="#" style="display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 28px; box-sizing: border-box; border-radius: 14px; background-color: #4227CD; color: #FFFFFF; font-size: 17px; font-weight: 700; text-decoration: none; width: {{L.btnW}}">درخواست دمو
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></a>
+<a href="#" style="display: inline-flex; align-items: center; gap: 12px; min-height: 48px; color: #0C124E; font-size: 16px; font-weight: 500; text-decoration: none">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 48px; height: 48px; border-radius: 50%; background: #FFFFFF; border: 1.5px solid #D9DAF3; color: #4227CD">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"></path></svg></span>
+تماشای ویدیو (۱ دقیقه)</a>
+</div>
+</div>
+
+<div style="z-index: 1; position: {{L.stagePos}}; left: 0; top: {{L.stageTop}}; width: {{L.stageW}}; height: {{L.stageH}}; margin-top: {{L.stageMt}}">
+<img src="./assets/d609a25d0c524259cfbba9ee27ebde0e.jpg" alt="کاراکتر پزشک رساگو پشت میز گزارش، در حال ارائه‌ی گزارش با میکروفون؛ پشت شیشه دستگاه MRI دیده می‌شود" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; -webkit-mask-image: {{L.mask}}; mask-image: {{L.mask}}; -webkit-mask-composite: source-in; mask-composite: intersect">
+<div aria-hidden="true" style="position: absolute; left: {{L.waveL}}; top: {{L.waveT}}; transform: scale({{L.waveS}}); transform-origin: left top; display: flex; align-items: center; gap: 12px; padding: 10px 16px 10px 14px; background: #FFFFFF; border-radius: 999px; box-shadow: 0 10px 30px rgba(66, 39, 205, 0.16)">
+<div style="display: flex; align-items: center; gap: 3px; height: 28px; direction: ltr">
+<span class="rh-bar" style="width: 3.5px; height: 7px; border-radius: 4px; background: #0BCAA9; animation-delay: 0s"></span>
+<span class="rh-bar" style="width: 4px; height: 15px; border-radius: 4px; background: #6A44F7; animation-delay: .12s"></span>
+<span class="rh-bar" style="width: 4px; height: 24px; border-radius: 4px; background: #5C38EC; animation-delay: .24s"></span>
+<span class="rh-bar" style="width: 4px; height: 19px; border-radius: 4px; background: #5130DF; animation-delay: .36s"></span>
+<span class="rh-bar" style="width: 4px; height: 27px; border-radius: 4px; background: #4227CD; animation-delay: .48s"></span>
+<span class="rh-bar" style="width: 4px; height: 19px; border-radius: 4px; background: #5130DF; animation-delay: .6s"></span>
+<span class="rh-bar" style="width: 4px; height: 24px; border-radius: 4px; background: #5C38EC; animation-delay: .72s"></span>
+<span class="rh-bar" style="width: 4px; height: 15px; border-radius: 4px; background: #6A44F7; animation-delay: .84s"></span>
+<span class="rh-bar" style="width: 3.5px; height: 7px; border-radius: 4px; background: #0BCAA9; animation-delay: .96s"></span>
+</div>
+<span style="font-size: 13px; font-weight: 500; color: #0C124E; white-space: nowrap">در حال گوش دادن</span>
+<span style="font-size: 13px; font-weight: 500; color: #6B6F8C">۰:۴۲</span>
+</div>
+</div>
+
+<div aria-hidden="true" style="z-index: 2; position: {{L.cardPos}}; left: {{L.cardL}}; top: {{L.cardT}}; width: {{L.cardW}}; margin: {{L.cardM}}; align-self: center; background: #FFFFFF; border-radius: 16px; padding: 16px 18px 14px; box-sizing: border-box; box-shadow: 0 18px 44px rgba(12, 18, 78, 0.14); border: 1px solid #ECEDF8">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span style="font-size: 14px; font-weight: 700; color: #0C124E">گزارش MRI مغز</span>
+<span style="font-size: 12px; color: #6B6F8C">بدون تزریق</span>
+</div>
+<div style="height: 1px; background: #ECEDF8; margin: 10px 0"></div>
+<div dir="ltr" style="text-align: left; font-size: 12.5px; line-height: 1.75; color: #2A2F55; min-height: 154px">
+<sc-for list="{{lines}}" as="line" hint-placeholder-count="7">
+<div style="min-height: 22px; font-weight: {{line.weight}}; color: {{line.color}}">{{line.vis}}<sc-if value="{{line.caret}}" hint-placeholder-val="{{false}}"><span class="rh-caret" style="color: #4227CD">|</span></sc-if></div>
+</sc-for>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; min-height: 28px">
+<sc-if value="{{done}}" hint-placeholder-val="{{true}}">
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 10px 4px 12px; border-radius: 999px; background: #E3F8F3; color: #076B59; font-size: 12.5px; font-weight: 700">
+<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>آماده‌ی امضا</span>
+</sc-if>
+<sc-if value="{{writing}}" hint-placeholder-val="{{false}}">
+<span style="font-size: 12.5px; color: #6B6F8C">در حال نوشتن…</span>
+</sc-if>
+<span style="font-size: 12px; color: #6B6F8C">الگوی شما</span>
+</div>
+</div>
+
+</div>
+</section>
+
+<!-- ============ PAIN ============ -->
+<section id="pain" aria-labelledby="pain-title" style="background: #FFFFFF; padding: {{L.secPad}} 0">
+<div style="max-width: 1440px; margin: 0 auto; padding: 0 {{L.gutter}}; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 64px; margin-bottom: {{L.headGap}}">
+<h2 id="pain-title" style="flex: 1 1 420px; margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #0C124E">تشخیص در چند دقیقه،<br><span style="color: #8A8EAD; font-weight: 700">گزارش در صف تایپ.</span></h2>
+<p style="flex: 1 1 360px; max-width: 520px; margin: 0; font-size: 16px; line-height: 2; color: #565A78">در بیشتر مراکز، بعد از ارائه‌ی گزارش، متن وارد صف تایپ می‌شود، چند بار بین پزشک و تایپیست رفت‌وبرگشت می‌کند و بیمار برای گرفتن جواب منتظر می‌ماند.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1px; background: #E7E8F4; border: 1px solid #E7E8F4; border-radius: 22px; overflow: hidden">
+<div style="background: #FFFFFF; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: #EFEDFF; color: #4227CD"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+<h3 style="margin: 4px 0 0; font-size: 18px; font-weight: 700; color: #0C124E">صف تایپ</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.95; color: #565A78">گزارش‌ها پشت سر هم منتظر تایپیست می‌مانند و جواب بیمار دیر به دستش می‌رسد.</p>
+</div>
+<div style="background: #FFFFFF; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: #EFEDFF; color: #4227CD"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 19h16"></path><path d="M6 15l5-11 5 11"></path><path d="M8 11h6"></path></svg></span>
+<h3 style="margin: 4px 0 0; font-size: 18px; font-weight: 700; color: #0C124E">خطای اصطلاحات</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.95; color: #565A78">یک حرف اشتباه در نام یک ساختار یا یافته، یعنی بازخوانی و اصلاح دوباره‌ی گزارش.</p>
+</div>
+<div style="background: #FFFFFF; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: #EFEDFF; color: #4227CD"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11a8 8 0 0 0-14.3-4.9L4 8"></path><path d="M4 4v4h4"></path><path d="M4 13a8 8 0 0 0 14.3 4.9L20 16"></path><path d="M20 20v-4h-4"></path></svg></span>
+<h3 style="margin: 4px 0 0; font-size: 18px; font-weight: 700; color: #0C124E">بازخوانی‌های تکراری</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.95; color: #565A78">وقتی که باید صرف تصویر بعدی شود، صرف کنترل متنی می‌شود که کس دیگری تایپ کرده است.</p>
+</div>
+<div style="background: #FFFFFF; padding: 30px 28px 32px; display: flex; flex-direction: column; gap: 14px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: #EFEDFF; color: #4227CD"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"></rect><rect x="13" y="4" width="7" height="4" rx="1.5"></rect><rect x="13" y="10" width="7" height="10" rx="1.5"></rect><rect x="4" y="13" width="7" height="7" rx="1.5"></rect></svg></span>
+<h3 style="margin: 4px 0 0; font-size: 18px; font-weight: 700; color: #0C124E">گزارش‌های ناهمسان</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.95; color: #565A78">هر کس گزارش را کمی متفاوت می‌چیند و یکدستی گزارش‌های مرکز از بین می‌رود.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ HOW IT WORKS ============ -->
+<section id="how" aria-labelledby="how-title" style="background: #F6F7FD; padding: {{L.secPad}} 0">
+<div style="max-width: 1440px; margin: 0 auto; padding: 0 {{L.gutter}}; box-sizing: border-box">
+<div style="text-align: center; max-width: 720px; margin: 0 auto {{L.headGap}}">
+<h2 id="how-title" style="margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #0C124E">از صدای شما تا گزارش امضاشده،<br><span style="color: #8A8EAD; font-weight: 700">در چهار قدم</span></h2>
+<p style="margin: 18px auto 0; font-size: 16px; line-height: 2; color: #565A78; max-width: 560px">روش کارتان همان است که بود؛ فقط بخش تایپ از آن حذف می‌شود.</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 12px; padding: 12px; background: #FFFFFF; border-radius: 28px; border: 1px solid #E7E8F4; box-shadow: 0 24px 60px rgba(12, 18, 78, 0.06)">
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 6px; padding: 12px">
+<button type="button" onClick="{{st.a.pick}}" aria-pressed="{{st.a.pressed}}" style="display: flex; gap: 16px; align-items: flex-start; width: 100%; text-align: right; padding: 22px 22px 24px; border: 0; border-radius: 20px; background: {{st.a.bg}}; cursor: pointer; font-family: inherit">
+<span style="font-size: 18px; font-weight: 800; color: {{st.a.num}}; min-width: 18px; line-height: 1.6">۱</span>
+<span style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 20px; font-weight: 700; color: {{st.a.fg}}">گزارش را بگویید</span>
+<span style="font-size: 15px; line-height: 1.95; color: {{st.a.sub}}">یافته‌ها را همان‌طور که همیشه گزارش را ارائه می‌دهید بگویید؛ لازم نیست ترتیب یا عادت‌تان را عوض کنید.</span>
+</span>
+</button>
+<button type="button" onClick="{{st.b.pick}}" aria-pressed="{{st.b.pressed}}" style="display: flex; gap: 16px; align-items: flex-start; width: 100%; text-align: right; padding: 22px 22px 24px; border: 0; border-radius: 20px; background: {{st.b.bg}}; cursor: pointer; font-family: inherit">
+<span style="font-size: 18px; font-weight: 800; color: {{st.b.num}}; min-width: 18px; line-height: 1.6">۲</span>
+<span style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 20px; font-weight: 700; color: {{st.b.fg}}">رساگو گزارش را می‌نویسد</span>
+<span style="font-size: 15px; line-height: 1.95; color: {{st.b.sub}}">صدای شما به متن تبدیل می‌شود و در بخش‌های الگوی همان بررسی قرار می‌گیرد؛ با اصطلاحات پزشکی درست.</span>
+</span>
+</button>
+<button type="button" onClick="{{st.c.pick}}" aria-pressed="{{st.c.pressed}}" style="display: flex; gap: 16px; align-items: flex-start; width: 100%; text-align: right; padding: 22px 22px 24px; border: 0; border-radius: 20px; background: {{st.c.bg}}; cursor: pointer; font-family: inherit">
+<span style="font-size: 18px; font-weight: 800; color: {{st.c.num}}; min-width: 18px; line-height: 1.6">۳</span>
+<span style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 20px; font-weight: 700; color: {{st.c.fg}}">گزارش به شما ارائه می‌شود</span>
+<span style="font-size: 15px; line-height: 1.95; color: {{st.c.sub}}">گزارش آماده در کارتابل شما قرار می‌گیرد تا آن را کنار تصویر مرور کنید؛ هیچ گزارشی بدون نگاه شما جلو نمی‌رود.</span>
+</span>
+</button>
+<button type="button" onClick="{{st.d.pick}}" aria-pressed="{{st.d.pressed}}" style="display: flex; gap: 16px; align-items: flex-start; width: 100%; text-align: right; padding: 22px 22px 24px; border: 0; border-radius: 20px; background: {{st.d.bg}}; cursor: pointer; font-family: inherit">
+<span style="font-size: 18px; font-weight: 800; color: {{st.d.num}}; min-width: 18px; line-height: 1.6">۴</span>
+<span style="display: flex; flex-direction: column; gap: 8px">
+<span style="font-size: 20px; font-weight: 700; color: {{st.d.fg}}">تأیید نهایی با شماست</span>
+<span style="font-size: 15px; line-height: 1.95; color: {{st.d.sub}}">هر جا لازم بود اصلاح کنید؛ با تأیید شما، گزارش نهایی و آماده‌ی تحویل به بیمار می‌شود.</span>
+</span>
+</button>
+</div>
+
+<div style="flex: 1 1 420px; min-width: 0; min-height: 440px; border-radius: 22px; background: #EEEBFF; display: flex; align-items: center; justify-content: center; padding: 32px 20px; box-sizing: border-box; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; width: 520px; height: 520px; border-radius: 50%; border: 1px solid #DDD8FF; left: 50%; top: 50%; transform: translate(-50%, -50%)"></div>
+<div aria-hidden="true" style="position: absolute; width: 340px; height: 340px; border-radius: 50%; border: 1px solid #DDD8FF; left: 50%; top: 50%; transform: translate(-50%, -50%)"></div>
+
+<sc-if value="{{st.a.on}}" hint-placeholder-val="{{true}}">
+<div style="position: relative; width: 100%; max-width: 380px; background: #FFFFFF; border-radius: 20px; padding: 22px; box-sizing: border-box; box-shadow: 0 20px 50px rgba(66, 39, 205, 0.14)">
+<div style="display: flex; align-items: center; justify-content: space-between">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 14px; font-weight: 700; color: #0C124E"><span style="width: 8px; height: 8px; border-radius: 50%; background: #4227CD"></span>در حال ضبط</span>
+<span style="font-size: 14px; color: #6B6F8C">۰:۲۸</span>
+</div>
+<div aria-hidden="true" style="display: flex; align-items: center; justify-content: center; gap: 4px; height: 72px; margin: 18px 0 14px; direction: ltr">
+<span class="rh-bar" style="width: 4px; height: 14px; border-radius: 4px; background: #0BCAA9; animation-delay: 0s"></span>
+<span class="rh-bar" style="width: 4px; height: 30px; border-radius: 4px; background: #6A44F7; animation-delay: .1s"></span>
+<span class="rh-bar" style="width: 4px; height: 48px; border-radius: 4px; background: #5C38EC; animation-delay: .2s"></span>
+<span class="rh-bar" style="width: 4px; height: 36px; border-radius: 4px; background: #5130DF; animation-delay: .3s"></span>
+<span class="rh-bar" style="width: 4px; height: 62px; border-radius: 4px; background: #4227CD; animation-delay: .4s"></span>
+<span class="rh-bar" style="width: 4px; height: 40px; border-radius: 4px; background: #5130DF; animation-delay: .5s"></span>
+<span class="rh-bar" style="width: 4px; height: 54px; border-radius: 4px; background: #5C38EC; animation-delay: .6s"></span>
+<span class="rh-bar" style="width: 4px; height: 26px; border-radius: 4px; background: #6A44F7; animation-delay: .7s"></span>
+<span class="rh-bar" style="width: 4px; height: 44px; border-radius: 4px; background: #5C38EC; animation-delay: .8s"></span>
+<span class="rh-bar" style="width: 4px; height: 58px; border-radius: 4px; background: #4227CD; animation-delay: .9s"></span>
+<span class="rh-bar" style="width: 4px; height: 32px; border-radius: 4px; background: #5130DF; animation-delay: 1s"></span>
+<span class="rh-bar" style="width: 4px; height: 46px; border-radius: 4px; background: #5C38EC; animation-delay: 1.1s"></span>
+<span class="rh-bar" style="width: 4px; height: 22px; border-radius: 4px; background: #6A44F7; animation-delay: 1.2s"></span>
+<span class="rh-bar" style="width: 4px; height: 12px; border-radius: 4px; background: #0BCAA9; animation-delay: 1.3s"></span>
+</div>
+<div dir="ltr" style="text-align: left; background: #F6F7FD; border-radius: 12px; padding: 12px 14px; font-size: 13px; line-height: 1.8; color: #565A78">liver normal size homogeneous echo… no focal lesion… gallbladder normal wall no stone… both kidneys normal size no stone no hydro…</div>
+<div style="display: flex; justify-content: center; margin-top: 18px">
+<span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 50%; background: #4227CD; color: #FFFFFF; box-shadow: 0 0 0 8px #EFEDFF"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"></rect><path d="M5 11a7 7 0 0 0 14 0"></path><path d="M12 18v3"></path></svg></span>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{st.b.on}}" hint-placeholder-val="{{false}}">
+<div style="position: relative; width: 100%; max-width: 400px; background: #FFFFFF; border-radius: 20px; padding: 22px; box-sizing: border-box; box-shadow: 0 20px 50px rgba(66, 39, 205, 0.14)">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="font-size: 15px; font-weight: 700; color: #0C124E">سونوگرافی شکم و لگن</span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #EFEDFF; color: #4227CD; font-size: 12px; font-weight: 700">الگوی شما</span>
+</div>
+<div style="height: 1px; background: #ECEDF8; margin: 14px 0"></div>
+<div dir="ltr" style="text-align: left; display: flex; flex-direction: column; gap: 12px; font-size: 13px; line-height: 1.7; color: #2A2F55">
+<div><span style="display: block; font-weight: 700; color: #4227CD">Liver</span>Normal in size with homogeneous echotexture. No focal lesion.</div>
+<div><span style="display: block; font-weight: 700; color: #4227CD">Gallbladder</span>Normal wall thickness. No stones.</div>
+<div><span style="display: block; font-weight: 700; color: #4227CD">Kidneys</span>Both kidneys are normal in size. No stone or hydronephrosis.</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{st.c.on}}" hint-placeholder-val="{{false}}">
+<div style="position: relative; width: 100%; max-width: 400px; background: #FFFFFF; border-radius: 20px; padding: 22px; box-sizing: border-box; box-shadow: 0 20px 50px rgba(66, 39, 205, 0.14)">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="font-size: 15px; font-weight: 700; color: #0C124E">کارتابل گزارش‌ها</span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #4227CD; color: #FFFFFF; font-size: 12px; font-weight: 700">۱ گزارش جدید</span>
+</div>
+<div style="height: 1px; background: #ECEDF8; margin: 14px 0"></div>
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #F1F0FF; border: 1px solid #DCD6FF">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700; color: #0C124E">سونوگرافی شکم و لگن</span><span style="font-size: 12px; color: #6B6F8C">همین الان</span></span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #FFFFFF; color: #4227CD; font-size: 12px; font-weight: 700; white-space: nowrap">آماده‌ی بازبینی</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #F6F7FD">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700; color: #0C124E">MRI مغز</span><span style="font-size: 12px; color: #6B6F8C">۱۰:۴۲</span></span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #E3F8F3; color: #076B59; font-size: 12px; font-weight: 700; white-space: nowrap">تأییدشده</span>
+</div>
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 12px 14px; border-radius: 14px; background: #F6F7FD">
+<span style="display: flex; flex-direction: column; gap: 2px"><span style="font-size: 14px; font-weight: 700; color: #0C124E">سی‌تی‌اسکن قفسه‌ی سینه</span><span style="font-size: 12px; color: #6B6F8C">۰۹:۱۵</span></span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #E3F8F3; color: #076B59; font-size: 12px; font-weight: 700; white-space: nowrap">تأییدشده</span>
+</div>
+</div>
+<div style="display: flex; align-items: center; justify-content: center; min-height: 44px; margin-top: 16px; border-radius: 12px; border: 1.5px solid #DCD6FF; color: #4227CD; font-size: 14px; font-weight: 700">مشاهده‌ی گزارش</div>
+</div>
+</sc-if>
+
+<sc-if value="{{st.d.on}}" hint-placeholder-val="{{false}}">
+<div style="position: relative; width: 100%; max-width: 400px; background: #FFFFFF; border-radius: 20px; padding: 22px; box-sizing: border-box; box-shadow: 0 20px 50px rgba(66, 39, 205, 0.14)">
+<div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
+<span style="font-size: 15px; font-weight: 700; color: #0C124E">تأیید نهایی</span>
+<span style="padding: 4px 10px; border-radius: 999px; background: #FFF3E0; color: #8A4B00; font-size: 12px; font-weight: 700">۱ اصلاح</span>
+</div>
+<div style="height: 1px; background: #ECEDF8; margin: 14px 0"></div>
+<div dir="ltr" style="text-align: left; font-size: 13px; line-height: 1.9; color: #2A2F55">
+<span style="font-weight: 700; color: #0C124E">Impression:</span> <span style="background: #EFEDFF; color: #4227CD; border-radius: 6px; padding: 1px 6px; font-weight: 700">Mild</span> fatty change of the liver. Otherwise normal abdominal and pelvic ultrasound.
+</div>
+<div style="display: flex; gap: 10px; margin-top: 20px">
+<span style="flex: 1; display: inline-flex; align-items: center; justify-content: center; min-height: 44px; border-radius: 12px; border: 1.5px solid #DCDDF2; color: #0C124E; font-size: 14px; font-weight: 700">ویرایش</span>
+<span style="flex: 1.4; display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 44px; border-radius: 12px; background: #4227CD; color: #FFFFFF; font-size: 14px; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>تأیید و امضا</span>
+</div>
+</div>
+</sc-if>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section id="features" aria-labelledby="features-title" style="background: #FFFFFF; padding: {{L.secPad}} 0">
+<div style="max-width: 1440px; margin: 0 auto; padding: 0 {{L.gutter}}; box-sizing: border-box">
+<div style="text-align: center; max-width: 720px; margin: 0 auto {{L.headGap}}">
+<h2 id="features-title" style="margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #0c124e">شخصی سازی شده برای شما و گزارش‌های شما</h2>
+</div>
+<div style="display: grid; grid-template-columns: {{L.cols3}}; gap: 16px">
+
+<div style="grid-column: span {{L.span2}}; background: #F6F7FD; border-radius: 24px; padding: 32px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; box-sizing: border-box">
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 700; color: #0C124E">الگوی گزارش خودتان</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #565A78">قالب هر بررسی را یک بار تعریف کنید؛ از آن به بعد گزارش‌ها با همان ساختار و همان جمله‌بندی‌های همیشگی شما نوشته می‌شوند.</p>
+</div>
+<div aria-hidden="true" style="flex: 1 1 260px; background: #FFFFFF; border-radius: 18px; padding: 16px; display: flex; flex-direction: column; gap: 8px; border: 1px solid #ECEDF8">
+<div style="display: flex; align-items: center; justify-content: space-between; padding: 12px 14px; border-radius: 12px; background: #0C124E; color: #FFFFFF; font-size: 14px; font-weight: 700">سونوگرافی شکم و لگن<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0BCAA9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg></div>
+<div style="padding: 12px 14px; border-radius: 12px; background: #F6F7FD; color: #2A2F55; font-size: 14px">MRI مغز</div>
+<div style="padding: 12px 14px; border-radius: 12px; background: #F6F7FD; color: #2A2F55; font-size: 14px">سی‌تی‌اسکن قفسه‌ی سینه</div>
+<div style="padding: 12px 14px; border-radius: 12px; border: 1.5px dashed #CFCFEA; color: #565A78; font-size: 14px">+ الگوی تازه</div>
+</div>
+</div>
+
+<div style="background: #F6F7FD; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
+<div aria-hidden="true" dir="ltr" style="background: #FFFFFF; border-radius: 16px; padding: 18px; border: 1px solid #ECEDF8; display: flex; flex-direction: column; gap: 10px; font-size: 15px">
+<span style="color: #8A8EAD; text-decoration: line-through">hepatomegally</span>
+<span style="display: inline-flex; align-items: center; gap: 8px; color: #0C124E; font-weight: 700"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0BCAA9" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>hepatomegaly</span></span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; color: #0C124E">اصطلاحات پزشکی درست</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #565A78">واژه‌های تخصصی و نام ساختارها درست و یکدست نوشته می‌شوند.</p>
+</div>
+</div>
+
+<div style="background: #F6F7FD; border-radius: 24px; padding: 32px; display: flex; flex-direction: column; gap: 22px; box-sizing: border-box">
+<div aria-hidden="true" style="display: flex; flex-wrap: wrap; gap: 8px">
+<span style="padding: 8px 14px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E3F3; font-size: 14px; color: #0C124E">سونوگرافی</span>
+<span style="padding: 8px 14px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E3F3; font-size: 14px; color: #0C124E">رادیولوژی</span>
+<span style="padding: 8px 14px; border-radius: 999px; background: #FFFFFF; border: 1px solid #E2E3F3; font-size: 14px; color: #0C124E">سی‌تی‌اسکن</span>
+<span style="padding: 8px 14px; border-radius: 999px; background: #4227CD; font-size: 14px; color: #FFFFFF">MRI</span>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px">
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; color: #0C124E">از سونوگرافی تا MRI</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #565A78">برای هر نوع تصویربرداری، الگو و اصطلاحات مخصوص همان بررسی.</p>
+</div>
+</div>
+
+<div style="grid-column: span {{L.span2}}; background: #0C124E; border-radius: 24px; padding: 32px; display: flex; flex-wrap: wrap; gap: 28px; align-items: center; box-sizing: border-box">
+<div style="flex: 1 1 260px; display: flex; flex-direction: column; gap: 12px">
+<h3 style="margin: 0; font-size: 22px; font-weight: 700; color: #FFFFFF">امضای نهایی همیشه با شماست</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #C9CCEB">رساگو پیش‌نویس را آماده می‌کند؛ هیچ گزارشی بدون بازبینی و تأیید پزشک نهایی نمی‌شود.</p>
+</div>
+<div aria-hidden="true" style="flex: 1 1 260px; display: flex; align-items: center; gap: 8px; flex-wrap: wrap">
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; background: rgba(255,255,255,0.08); color: #FFFFFF; font-size: 14px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#0BCAA9" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>پیش‌نویس</span>
+<span style="width: 18px; height: 1.5px; background: rgba(255,255,255,0.3)"></span>
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; background: #FFFFFF; color: #0C124E; font-size: 14px; font-weight: 700"><span style="width: 8px; height: 8px; border-radius: 50%; background: #4227CD"></span>بازبینی شما</span>
+<span style="width: 18px; height: 1.5px; background: rgba(255,255,255,0.3)"></span>
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 10px 14px; border-radius: 12px; border: 1px dashed rgba(255,255,255,0.35); color: #C9CCEB; font-size: 14px">امضا</span>
+</div>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============ SECURITY ============ -->
+<section id="security" aria-labelledby="security-title" style="background: #0C124E; color: #FFFFFF; padding: {{L.secPad}} 0; position: relative; overflow: hidden">
+<div aria-hidden="true" style="position: absolute; width: 900px; height: 900px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.06); left: 50%; top: -420px; transform: translateX(-50%)"></div>
+<div aria-hidden="true" style="position: absolute; width: 600px; height: 600px; border-radius: 50%; border: 1px solid rgba(255,255,255,0.06); left: 50%; top: -270px; transform: translateX(-50%)"></div>
+<div style="position: relative; max-width: 1440px; margin: 0 auto; padding: 0 {{L.gutter}}; box-sizing: border-box">
+<div style="text-align: center; max-width: 720px; margin: 0 auto {{L.headGap}}">
+<span aria-hidden="true" style="display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px; border-radius: 18px; background: rgba(11, 202, 169, 0.14); color: #0BCAA9; margin-bottom: 22px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v6c0 4.5-3 7.8-7 9-4-1.2-7-4.5-7-9V6z"></path><path d="M9 12l2 2 4-4"></path></svg></span>
+<h2 id="security-title" style="margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #FFFFFF">داده‌های بیمار،<br><span style="color: #A9ACD6; font-weight: 700">امانتی در دست شما</span></h2>
+<p style="margin: 18px auto 0; font-size: 16px; line-height: 2; color: #C9CCEB; max-width: 560px">صدا و گزارش بیماران از حساس‌ترین داده‌های یک مرکز درمانی است. این بخش را با سیاست‌های واقعی رساگو تکمیل کنید.</p>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 16px">
+<div style="padding: 28px; border-radius: 22px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 12px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0BCAA9" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"></rect><rect x="3" y="13" width="18" height="7" rx="2"></rect><path d="M7 7.5h.01"></path><path d="M7 16.5h.01"></path></svg>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: #FFFFFF">محل نگهداری داده‌ها</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #C9CCEB">داده‌ها روی سرورهای داخلی یا سرورهای خود مرکز درمانی (با درخواست مرکز) نگهداری می‌شوند.</p>
+</div>
+<div style="padding: 28px; border-radius: 22px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 12px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0BCAA9" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: #FFFFFF">رمزنگاری</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #C9CCEB">صدا و متن گزارش به صورت رمزنگاری شده ذخیره و منتقل می‌شود تا امنیت اطلاعات بیماران حفظ شود.</p>
+</div>
+<div style="padding: 28px; border-radius: 22px; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; flex-direction: column; gap: 12px">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0BCAA9" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M3 20a6 6 0 0 1 12 0"></path><path d="M17 11l2 2 3-3"></path></svg>
+<h3 style="margin: 0; font-size: 18px; font-weight: 700; color: #FFFFFF">دسترسی کنترل‌شده</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #C9CCEB">دسترسی به گزارش‌ها فقط در اختیار پزشک مربوطه است و در اختیار نفرات دیگر قرار نمی‌گیرد.</p>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ AUDIENCES ============ -->
+<section id="who" aria-labelledby="who-title" style="background: #F6F7FD; padding: {{L.secPad}} 0">
+<div style="max-width: 1440px; margin: 0 auto; padding: 0 {{L.gutter}}; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px 64px; margin-bottom: {{L.headGap}}">
+<h2 id="who-title" style="flex: 1 1 420px; margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #0C124E">هر جا گزارش تصویربرداری نوشته می‌شود،<br><span style="color: #8A8EAD; font-weight: 700">رساگو کنار پزشک است</span></h2>
+<a class="rs-light" href="#" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 22px; border-radius: 14px; background-color: #FFFFFF; border: 1px solid #DCDDF2; color: #0C124E; font-size: 15px; font-weight: 700; text-decoration: none">درخواست دمو برای مرکز شما
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></a>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px">
+<div style="background: #FFFFFF; border-radius: 24px; padding: 32px 30px; border: 1px solid #E7E8F4; display: flex; flex-direction: column; gap: 16px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 16px; background: #EFEDFF; color: #4227CD"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3v6a4 4 0 0 0 8 0V3"></path><path d="M10 13v3a5 5 0 0 0 10 0v-2"></path><circle cx="20" cy="12" r="2"></circle></svg></span>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; color: #0C124E">رادیولوژیست‌ها و پزشکان سونوگرافی</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #565A78">وقت‌تان را صرف تصویر کنید، نه بازخوانی متن.</p>
+<ul style="margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #2A2F55">
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>ارائه‌ی گزارش به روش همیشگی</li>
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>الگوهای شخصی برای هر بررسی</li>
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>بازبینی و امضا در یک صفحه</li>
+</ul>
+</div>
+<div style="background: #FFFFFF; border-radius: 24px; padding: 32px 30px; border: 1px solid #E7E8F4; display: flex; flex-direction: column; gap: 16px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 16px; background: #EFEDFF; color: #4227CD"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"></rect><path d="M8 7V4h8v3"></path><path d="M12 11v6"></path><path d="M9 14h6"></path></svg></span>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; color: #0C124E">مراکز تصویربرداری</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #565A78">گزارش زودتر به دست بیمار می‌رسد و صف تایپ کوتاه می‌شود.</p>
+<ul style="margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #2A2F55">
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>گزارش‌های یکدست در کل مرکز</li>
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>تحویل سریع‌تر جواب به بیمار</li>
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>وابستگی کمتر به نیروی تایپ</li>
+</ul>
+</div>
+<div style="background: #FFFFFF; border-radius: 24px; padding: 32px 30px; border: 1px solid #E7E8F4; display: flex; flex-direction: column; gap: 16px">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 52px; height: 52px; border-radius: 16px; background: #EFEDFF; color: #4227CD"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 21V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16"></path><path d="M2 21h20"></path><path d="M12 7v6"></path><path d="M9 10h6"></path><path d="M10 21v-4h4v4"></path></svg></span>
+<h3 style="margin: 0; font-size: 20px; font-weight: 700; color: #0C124E">بیمارستان‌ها و کلینیک‌ها</h3>
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #565A78">گزارش‌نویسی چند پزشک، با یک استاندارد.</p>
+<ul style="margin: 4px 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 10px; font-size: 15px; color: #2A2F55">
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>الگوهای مشترک برای هر بخش</li>
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span style="font-weight: 700">مدیریت کاربران و دسترسی‌ها</span></li>
+<li style="display: flex; gap: 10px; align-items: center"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A9E85" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg><span>اتصال به سامانه‌های بیمارستان</span></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="faq" aria-labelledby="faq-title" style="background: #FFFFFF; padding: {{L.secPad}} 0">
+<div style="max-width: 1440px; margin: 0 auto; padding: 0 {{L.gutter}}; box-sizing: border-box; display: flex; flex-wrap: wrap; gap: 40px 80px; align-items: flex-start">
+<div style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 18px">
+<h2 id="faq-title" style="margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #0C124E">سؤال‌هایی که<br><span style="color: #8A8EAD; font-weight: 700">معمولاً می‌پرسند</span></h2>
+<p style="margin: 0; font-size: 16px; line-height: 2; color: #565A78">جواب سؤال‌تان این‌جا نیست؟ <a href="#" style="color: #4227CD; font-weight: 700">با ما تماس بگیرید</a>.</p>
+</div>
+<div style="flex: 2 1 520px; min-width: 0; display: flex; flex-direction: column; border-top: 1px solid #E7E8F4">
+
+<div style="border-bottom: 1px solid #E7E8F4">
+<button type="button" onClick="{{fq.a.toggle}}" aria-expanded="{{fq.a.exp}}" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: transparent; cursor: pointer; text-align: right; font-family: inherit; font-size: 17px; font-weight: 700; color: #0C124E">آیا باید روش ارائه‌ی گزارشم را تغییر دهم؟
+<span aria-hidden="true" style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #F1F0FF; color: #4227CD; transform: rotate({{fq.a.rot}}deg); transition: transform .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></button>
+<sc-if value="{{fq.a.open}}" hint-placeholder-val="{{true}}"><p style="margin: 0 0 24px; font-size: 15px; line-height: 2; color: #565A78; max-width: 46em">نه. همان‌طور که تا امروز گزارش را ارائه می‌دادید، ادامه دهید. رساگو فقط کمک می‌کند این مسیر راحت‌تر، سریع‌تر و ارزان‌تر انجام شود.</p></sc-if>
+</div>
+
+<div style="border-bottom: 1px solid #E7E8F4">
+<button type="button" onClick="{{fq.b.toggle}}" aria-expanded="{{fq.b.exp}}" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: transparent; cursor: pointer; text-align: right; font-family: inherit; font-size: 17px; font-weight: 700; color: #0C124E">گزارش‌ها به چه زبانی نوشته می‌شوند؟
+<span aria-hidden="true" style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #F1F0FF; color: #4227CD; transform: rotate({{fq.b.rot}}deg); transition: transform .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></button>
+<sc-if value="{{fq.b.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0 0 24px; font-size: 15px; line-height: 2; color: #565A78; max-width: 46em">گزارش‌ها می‌توانند به زبان انگلیسی یا ترکیبی از فارسی و انگلیسی باشند؛ بسته به نیاز شما و نوع گزارشی که لازم دارید.</p></sc-if>
+</div>
+
+<div style="border-bottom: 1px solid #E7E8F4">
+<button type="button" onClick="{{fq.c.toggle}}" aria-expanded="{{fq.c.exp}}" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: transparent; cursor: pointer; text-align: right; font-family: inherit; font-size: 17px; font-weight: 700; color: #0C124E">برای استفاده از رساگو چه تجهیزاتی لازم است؟
+<span aria-hidden="true" style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #F1F0FF; color: #4227CD; transform: rotate({{fq.c.rot}}deg); transition: transform .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></button>
+<sc-if value="{{fq.c.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0 0 24px; font-size: 15px; line-height: 2; color: #565A78; max-width: 46em">فقط گوشی موبایل خودتان کافی است. البته استفاده از یک میکروفون کمک می‌کند رساگو صدای شما را دقیق‌تر بفهمد و گزارش بهتری بسازد.</p></sc-if>
+</div>
+
+<div style="border-bottom: 1px solid #E7E8F4">
+<button type="button" onClick="{{fq.d.toggle}}" aria-expanded="{{fq.d.exp}}" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: transparent; cursor: pointer; text-align: right; font-family: inherit; font-size: 17px; font-weight: 700; color: #0C124E">داده‌های بیماران کجا نگهداری می‌شود؟
+<span aria-hidden="true" style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #F1F0FF; color: #4227CD; transform: rotate({{fq.d.rot}}deg); transition: transform .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></button>
+<sc-if value="{{fq.d.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0 0 24px; font-size: 15px; line-height: 2; color: #565A78; max-width: 46em">داده‌ها در سرورهای داخل کشور نگهداری می‌شوند و به درخواست مرکز درمانی یا پزشک، می‌توانند روی سرورهای خود مرکز هم نگهداری شوند.</p></sc-if>
+</div>
+
+<div style="border-bottom: 1px solid #E7E8F4">
+<button type="button" onClick="{{fq.e.toggle}}" aria-expanded="{{fq.e.exp}}" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: transparent; cursor: pointer; text-align: right; font-family: inherit; font-size: 17px; font-weight: 700; color: #0C124E">دمو چطور انجام می‌شود؟
+<span aria-hidden="true" style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #F1F0FF; color: #4227CD; transform: rotate({{fq.e.rot}}deg); transition: transform .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></button>
+<sc-if value="{{fq.e.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0 0 24px; font-size: 15px; line-height: 2; color: #565A78; max-width: 46em">پس از هماهنگی و راه‌اندازی اولیه در مرکز، می‌توانید دو هفته به‌صورت رایگان از دموی رساگو استفاده کنید.</p></sc-if>
+</div>
+
+<div style="border-bottom: 1px solid #E7E8F4">
+<button type="button" onClick="{{fq.f.toggle}}" aria-expanded="{{fq.f.exp}}" style="display: flex; align-items: center; justify-content: space-between; gap: 20px; width: 100%; padding: 24px 0; border: 0; background: transparent; cursor: pointer; text-align: right; font-family: inherit; font-size: 17px; font-weight: 700; color: #0C124E">هزینه‌ی استفاده چقدر است؟
+<span aria-hidden="true" style="flex: none; display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #F1F0FF; color: #4227CD; transform: rotate({{fq.f.rot}}deg); transition: transform .2s"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M12 5v14"></path><path d="M5 12h14"></path></svg></span></button>
+<sc-if value="{{fq.f.open}}" hint-placeholder-val="{{false}}"><p style="margin: 0 0 24px; font-size: 15px; line-height: 2; color: #565A78; max-width: 46em">هزینه به اندازه‌ی استفاده‌ی شماست: پلن پرداخت به ازای مصرف (Pay as you go) برای شما فعال می‌شود و به ازای هر گزارش، هزینه از حساب کاربری‌تان کسر می‌شود.</p></sc-if>
+</div>
+
+</div>
+</div>
+</section>
+
+<!-- ============ FINAL CTA + FOOTER ============ -->
+<footer style="background: #0C124E; color: #FFFFFF">
+<div style="max-width: 1440px; margin: 0 auto; padding: {{L.ctaPad}} {{L.gutter}} 0; box-sizing: border-box">
+<div style="display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 28px 64px; padding-bottom: {{L.ctaGap}}; border-bottom: 1px solid rgba(255,255,255,0.12)">
+<h2 style="flex: 1 1 420px; margin: 0; font-size: {{L.h2}}; line-height: 1.5; font-weight: 800; color: #FFFFFF">گزارش بعدی را<br><span style="color: #A9ACD6; font-weight: 700">با صدای خودتان بنویسید</span></h2>
+<div style="flex: 1 1 340px; max-width: 460px; display: flex; flex-direction: column; gap: 22px">
+<p style="margin: 0; font-size: 16px; line-height: 2; color: #C9CCEB">در یک جلسه‌ی کوتاه ببینید رساگو با گزارش‌های شما چه می‌کند.</p>
+<div style="display: flex; flex-wrap: wrap; gap: 14px 22px; align-items: center">
+<a href="#" style="display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 26px; border-radius: 14px; background: #FFFFFF; color: #0C124E; font-size: 16px; font-weight: 700; text-decoration: none">درخواست دمو
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5"></path><path d="M11 6l-6 6 6 6"></path></svg></a>
+<a class="rs-foot" href="#" style="display: inline-flex; align-items: center; gap: 10px; min-height: 48px; color: #C9CCEB; font-size: 15px; font-weight: 500; text-decoration: none">
+<span style="display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.25); color: #FFFFFF"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"></path></svg></span>تماشای ویدیو</a>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 40px 64px; padding: 56px 0 48px">
+<div style="flex: 1 1 280px; max-width: 360px; display: flex; flex-direction: column; gap: 16px">
+<img src="./assets/403c0a1e0d3c73f8f4967a60ef501597.svg" alt="رساگو" style="height: 34px; width: auto; align-self: flex-start">
+<p style="margin: 0; font-size: 15px; line-height: 2; color: #A9ACD6">دستیار هوشمند گزارش‌نویسی تصویربرداری پزشکی</p>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 40px 72px">
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #FFFFFF">محصول</h3>
+<a class="rs-foot" href="#how" style="color: #A9ACD6; font-size: 15px; text-decoration: none">نحوه‌ی کار</a>
+<a class="rs-foot" href="#features" style="color: #A9ACD6; font-size: 15px; text-decoration: none">امکانات</a>
+<a class="rs-foot" href="#security" style="color: #A9ACD6; font-size: 15px; text-decoration: none">امنیت</a>
+<a class="rs-foot" href="#faq" style="color: #A9ACD6; font-size: 15px; text-decoration: none">سؤالات متداول</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #FFFFFF">رساگو</h3>
+<a class="rs-foot" href="#" style="color: #A9ACD6; font-size: 15px; text-decoration: none">درباره ما</a>
+<a class="rs-foot" href="#" style="color: #A9ACD6; font-size: 15px; text-decoration: none">تماس با ما</a>
+<a class="rs-foot" href="#" style="color: #A9ACD6; font-size: 15px; text-decoration: none">حریم خصوصی</a>
+<a class="rs-foot" href="#" style="color: #A9ACD6; font-size: 15px; text-decoration: none">شرایط استفاده</a>
+</div>
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h3 style="margin: 0 0 4px; font-size: 15px; font-weight: 700; color: #FFFFFF">ارتباط</h3>
+<span style="color: #A9ACD6; font-size: 15px">[ایمیل]</span>
+<span style="color: #A9ACD6; font-size: 15px">[تلفن]</span>
+<span dir="ltr" style="color: #A9ACD6; font-size: 15px; text-align: right">rasagooai.ir</span>
+</div>
+</div>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; padding: 22px 0 28px; border-top: 1px solid rgba(255,255,255,0.12); font-size: 13px; color: #A9ACD6"><span>© ۱۴۰۵ رساگو. همه‌ی حقوق محفوظ است.</span><span><br></span></div>
+</div>
+</footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":1440,"height":7400}}'>
+class Component extends DCLogic {
+  getLines() {
+    return [
+      { t: 'Findings:', h: true },
+      { t: 'No acute intracranial hemorrhage or infarct.' },
+      { t: 'Ventricles and sulci are normal in size.' },
+      { t: 'No mass effect or midline shift.' },
+      { t: '' },
+      { t: 'Impression:', h: true },
+      { t: 'Normal non-contrast brain MRI.' }
+    ];
+  }
+  total() {
+    return this.getLines().reduce(function (s, l) { return s + l.t.length; }, 0);
+  }
+  readWidth() {
+    try { return window.innerWidth || document.documentElement.clientWidth || 1440; } catch (e) { return 1440; }
+  }
+  componentDidMount() {
+    var self = this;
+    this.onResize = function () { self.setState({ W: self.readWidth() }); };
+    try { window.addEventListener('resize', this.onResize); } catch (e) {}
+    var reduce = false;
+    try { reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches; } catch (e) {}
+    if (reduce) { this.setState({ n: this.total(), W: this.readWidth() }); return; }
+    this.setState({ n: 0, W: this.readWidth() });
+    this.timer = setInterval(function () {
+      var n = (self.state && self.state.n) || 0;
+      var T = self.total();
+      if (n < T) { self.setState({ n: Math.min(T, n + 2) }); self.hold = 0; }
+      else {
+        self.hold = (self.hold || 0) + 1;
+        if (self.hold > 100) { self.hold = 0; self.setState({ n: 0 }); }
+      }
+    }, 35);
+  }
+  componentWillUnmount() {
+    if (this.timer) clearInterval(this.timer);
+    try { window.removeEventListener('resize', this.onResize); } catch (e) {}
+  }
+  layout(W) {
+    var px = function (v) { return Math.round(v) + 'px'; };
+    var common;
+    if (W < 820) {
+      var sw = W;
+      var sh = sw * 768 / 1376;
+      common = {
+        desk: false, mob: true, gutter: '22px', secPad: '72px', headGap: '36px', ctaPad: '72px', ctaGap: '56px',
+        h2: px(Math.max(26, Math.min(34, W * 0.072))), cols3: 'minmax(0, 1fr)', span2: 1,
+        dir: 'column', align: 'stretch', minH: '0px', pad: '28px 0 44px',
+        textW: '100%', textPad: '0 22px', gap: '20px',
+        h1: px(Math.max(28, Math.min(40, W * 0.085))), sub: '16px', btnW: '100%',
+        stagePos: 'relative', stageTop: '0px', stageW: px(sw), stageH: px(sh), stageMt: '28px',
+        mask: 'linear-gradient(to right, transparent 0%, #000 5%, #000 78%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 6%, #000 80%, transparent 100%)',
+        waveL: '31%', waveT: '3%', waveS: 0.7,
+        cardPos: 'relative', cardL: 'auto', cardT: 'auto', cardW: px(Math.min(360, W - 44)), cardM: '-30px auto 0'
+      };
+      return common;
+    }
+    var stW = W * 0.72;
+    var stH = stW * 768 / 1376;
+    var H = Math.max(780, stH + 60);
+    var stTop = (H - stH) / 2;
+    return {
+      desk: true, mob: false, gutter: px(W * 0.06), secPad: px(Math.max(88, Math.min(120, W * 0.08))), headGap: '56px', ctaPad: '104px', ctaGap: '72px',
+      h2: px(Math.max(30, Math.min(44, W * 0.031))), cols3: W < 1100 ? 'repeat(2, minmax(0, 1fr))' : 'repeat(3, minmax(0, 1fr))', span2: W < 1100 ? 1 : 2,
+      dir: 'row', align: 'center', minH: px(H), pad: '0',
+      textW: px(Math.min(520, W * 0.40) + W * 0.06), textPad: '0 ' + px(W * 0.06) + ' 0 0', gap: '28px',
+      h1: px(Math.max(36, Math.min(62, W * 0.043))), sub: px(Math.max(16, Math.min(19, W * 0.0135))), btnW: 'auto',
+      stagePos: 'absolute', stageTop: px(stTop), stageW: px(stW), stageH: px(stH), stageMt: '0px',
+      mask: 'linear-gradient(to right, transparent 0%, #000 6%, #000 60%, transparent 100%), linear-gradient(to bottom, transparent 0%, #000 8%, #000 82%, transparent 100%)',
+      waveL: '29%', waveT: '16%', waveS: 1,
+      cardPos: 'absolute', cardL: px(stW * 0.49), cardT: px(stTop + stH * 0.46), cardW: '300px', cardM: '0'
+    };
+  }
+  renderVals() {
+    var self = this;
+    var s = this.state || {};
+    var W = s.W || 1440;
+    var T = this.total();
+    var n = (typeof s.n === 'number') ? s.n : T;
+    var rem = n;
+    var caretSet = false;
+    var lines = this.getLines().map(function (l) {
+      var vis = l.t.slice(0, Math.max(0, rem));
+      var typing = rem >= 0 && rem < l.t.length && !caretSet;
+      if (typing) caretSet = true;
+      rem -= l.t.length;
+      return { vis: vis, caret: typing && n < T, weight: l.h ? 700 : 400, color: l.h ? '#0C124E' : '#2A2F55' };
+    });
+    var L = this.layout(W);
+    var step = s.step || 1;
+    var mk = function (i) {
+      var on = step === i;
+      return {
+        on: on, pressed: on ? 'true' : 'false',
+        bg: on ? '#0C124E' : 'transparent', fg: on ? '#FFFFFF' : '#0C124E',
+        sub: on ? '#C9CCEB' : '#565A78', num: on ? '#0BCAA9' : '#8A8EAD',
+        pick: function () { self.setState({ step: i }); }
+      };
+    };
+    var open = (typeof s.faq === 'number') ? s.faq : 0;
+    var fqi = function (i) {
+      var o = open === i;
+      return { open: o, exp: o ? 'true' : 'false', rot: o ? 45 : 0, toggle: function () { self.setState({ faq: o ? -1 : i }); } };
+    };
+    var menu = !!s.menu;
+    return {
+      L: L, lines: lines, done: n >= T, writing: n < T,
+      st: { a: mk(1), b: mk(2), c: mk(3), d: mk(4) },
+      fq: { a: fqi(0), b: fqi(1), c: fqi(2), d: fqi(3), e: fqi(4), f: fqi(5) },
+      menuShow: L.mob && menu, menuExp: menu ? 'true' : 'false', menuLabel: menu ? 'بستن منو' : 'باز کردن منو',
+      toggleMenu: function () { self.setState({ menu: !menu }); },
+      closeMenu: function () { self.setState({ menu: false }); }
+    };
+  }
+}
+</script>
 </body>
 </html>
