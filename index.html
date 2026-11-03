@@ -1444,6 +1444,7 @@ class Component extends DCLogic {
   renderVals() {
     var self = this;
     var s = this.state || {};
+    var noMo = this.reducedMotion();
     var W = s.W || 1440;
     var T = this.total();
     var n = (typeof s.n === 'number') ? s.n : T;
@@ -1489,6 +1490,8 @@ class Component extends DCLogic {
         stop: function (e) { if (e && e.stopPropagation) e.stopPropagation(); }
       },
       contactOpen: !!s.contact,
+      cBack: noMo ? 'none' : (s.contactClosing ? 'rs-fade-out 160ms ease-out both' : 'rs-fade-in 180ms ease-out both'),
+      cPanel: noMo ? 'none' : (s.contactClosing ? 'rs-pop-out 160ms ease-out both' : 'rs-pop-in 240ms cubic-bezier(.16,1,.3,1) both'),
       contact: {
         open: function () { self.openContact(); },
         close: function () { self.closeContact(); },
